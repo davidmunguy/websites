@@ -558,12 +558,13 @@ button {
 
 .project-gallery {
   display: grid;
-  grid-template-columns: 1.25fr 0.9fr;
-  grid-auto-rows: 285px;
-  gap: 16px;
+  grid-auto-flow: dense;
+  grid-auto-rows: 215px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
-.project-gallery figure {
+.project-card {
   position: relative;
   min-height: 0;
   margin: 0;
@@ -572,14 +573,23 @@ button {
   background: var(--ink);
 }
 
-.project-gallery figure::after {
+.project-card::after {
   position: absolute;
   inset: 0;
   content: "";
   background: linear-gradient(0deg, rgba(8, 17, 12, 0.76), rgba(8, 17, 12, 0.04));
 }
 
-.project-feature {
+.project-card-feature {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.project-card-wide {
+  grid-column: span 2;
+}
+
+.project-card-tall {
   grid-row: span 2;
 }
 
@@ -590,7 +600,7 @@ button {
   transition: transform 500ms ease;
 }
 
-.project-gallery figure:hover img {
+.project-card:hover img {
   transform: scale(1.04);
 }
 
@@ -850,6 +860,10 @@ button {
   .process-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .project-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 760px) {
@@ -975,7 +989,10 @@ button {
     grid-auto-rows: 300px;
   }
 
-  .project-feature {
+  .project-card-feature,
+  .project-card-wide,
+  .project-card-tall {
+    grid-column: span 1;
     grid-row: span 1;
   }
 
